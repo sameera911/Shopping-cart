@@ -1,0 +1,60 @@
+<div class="containers">
+    <div class="row">
+        <div class="div1 col-lg-2 col-sm-6">
+
+            <div class="text-center">
+                <img src="\assets\images\1.jpg" class="img-thumbnail" alt="book Terre" width="304" height="236">
+
+                <br><br>
+
+                <h4>Welcom {{customername}}</h4>
+                <h6>Explore the world of knowledge. Login to find more...</h6>
+
+                            <div *ngIf="loginuseropt">
+                                <a><button type="submit" class="btn btn-primary loginbtn " >Logout</button></a>
+                                <br><br>
+                                <a><button type="submit" class="btn btn-link loginbtn " (click)="gotoViewAccount()"> View
+                                        account</button></a><br>
+                                <a><button type="submit" class="btn btn-link loginbtn " (click)="gotoUpdateAccount()"> Update
+                                        account</button></a>
+                            </div>
+                        <div *ngIf="useropt">
+                            <a routerLink="login"><button type="submit" class="btn btn-primary loginbtn" (click)="gotoLogin()">Login</button></a>
+                            <br><br>
+                            <a><button type="submit" class="btn btn-link loginbtn " (click)="gotoViewAccount()"> View
+                                account</button></a><br>
+                        <a><button type="submit" class="btn btn-link loginbtn " (click)="gotoUpdateAccount()"> Update
+                                account</button></a>
+                            <a><button type="submit" class="btn btn-link loginbtn " (click)="gotoMyCart()"> View
+                                    your cart</button></a><br>
+                            <a><button type="submit" class="btn btn-link loginbtn " (click)="gotoRegister()"> Register to buy books</button></a>
+                        </div>
+            </div>
+
+        </div>
+        <div class="col-lg-6 col-sm-6 ">
+            <form *ngFor="let data of items">
+                <table style="border: 2px solid rgb(241, 235, 235); width:100%;
+                background-color:lavender; margin-top: 30px;">
+                    <tr>
+                        <td><img src="\assets\images\{{bookImage}}"><br>
+                            {{description}}</td>
+                        <td style="float: left; text-align: left;">
+                            <h5>{{bookName}}</h5><br>
+                            <h6> Author:{{author}}</h6>
+                            <small style="color: green; font-size: medium;">In Stock:{{inStock}}</small>
+                            <br>
+                            <h5>Price:{{price| currency:'INR'}}</h5><br>
+                            Number of copies: <input type="number" id="noOfCopies" name="noOfCopies" min="1" max="6"
+                                step="1" pattern="\d+" (change)="getValue($event)">
+                        </td>
+
+                    </tr>
+                </table>
+                
+                <button  type="submit" class="btn btn-success" style="margin-left: 50px; margin-top: 30px;" (click)="addToCart()">Add to cart</button>
+            </form>
+        </div>
+    </div>
+
+</div>

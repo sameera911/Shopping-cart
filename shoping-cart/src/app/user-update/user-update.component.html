@@ -1,0 +1,86 @@
+<div class="containers">
+    <div class="row">
+        <div class="div1 col-lg-2 col-sm-6">
+
+            <div class="text-center">
+                <img src="\assets\images\1.jpg" class="img-thumbnail" alt="book Terre" width="304" height="236">
+                <!-- <img src="../2.jpg" alt=""><br><br><br> -->
+                <br><br>
+
+                <h4>Welcom {{currentUser}}</h4>
+                <h6>Explore the world of knowledge. Login to find more...</h6>
+
+
+                <a routerLink="login"><button type="submit" class="btn btn-primary loginbtn ">Logout</button></a>
+                <br><br>
+                <a routerLink="userView"><button type="submit" class="btn btn-link loginbtn " (click)="gotoViewAccount()"> View
+                        account</button></a><br>
+                <a routerLink="userUpdate"><button type="submit" class="btn btn-link loginbtn " (click)="gotoUpdate()"> Update
+                        account</button></a>
+            </div>
+
+        </div>
+        <div class="col-lg-6 col-sm-6 ">
+
+            <div class="contact-form">
+
+                <h2>Update Details</h2>
+                <form [formGroup]="registerForm" (ngSubmit)="userUpdate()">
+
+                    <p>Full Name</p><input placeholder="Enter  your name" type="text" formControlName="custName"
+                        name="custName">
+                    <div *ngIf="this.registerForm.get('custName')?.errors" class="valerror form-text"
+                        style="color: red;">
+                        Invalid Name</div>
+
+                    <p>Username</p><input placeholder="Enter Username" type="text" formControlName="userName"
+                        name="userName">
+                    <div *ngIf="this.registerForm.get('userName')?.errors" class="valerror form-text"
+                        style="color: red;">
+                        Invalid username</div>
+
+                    <p>Password</p><input placeholder="Enter Password" type="password" formControlName="password"
+                        name="password">
+                    <div *ngIf="this.registerForm.get('password')?.errors" class="valerror form-text"
+                        style="color: red;">
+                        Invalid password</div>
+
+                    <p>Gender</p><select name="gender" id="gender" formControlName="gender">
+                        <option disabled selected value> -- select an option -- </option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Others">Others</option>
+                    </select>
+                    <div *ngIf="this.registerForm.get('gender')?.errors" class="valerror form-text" style="color: red;">
+                        Select a gender</div>
+
+                    <p>Date of birth</p><input placeholder="Enter your date of birth" type="date" formControlName="dob"
+                        name="dob">
+                    <div *ngIf="this.registerForm.get('dob')?.errors" class="valerror form-text" style="color: red;">
+                        Invalid
+                        date of birth</div>
+
+
+                    <p>Address</p><input placeholder="Enter address" type="text" formControlName="address"
+                        name="address">
+                    <div *ngIf="this.registerForm.get('address')?.errors" class="valerror form-text"
+                        style="color: red;">
+                        Invalid address</div>
+
+                    <p>Phone Number</p><input placeholder="Enter Phonenummber" type="text" formControlName="phoneNo"
+                        name="phoneNo">
+                    <div *ngIf="this.registerForm.get('phoneNo')?.errors" class="valerror form-text"
+                        style="color: red;">
+                        Invalid Phone nummber</div>
+
+                    <p>Email</p><input placeholder="Enter email id" type="email" formControlName="email" name="email">
+                    <div *ngIf="this.registerForm.get('email')?.errors" class="valerror form-text" style="color: red;">
+                        Invalid Phone nummber</div>
+                    <input type="submit" value="Update">
+                    <!-- <p><input type="checkbox">Remember Me</p> -->
+                </form>
+                <div></div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -13,6 +13,7 @@ const bookList = () => {
             else {
                 var records = db.Books.count();
                 return {
+                    book:books,
                     status: true,
                     statusCode: 200,
                     message: `Total ${records} books found.`
@@ -24,7 +25,7 @@ const bookList = () => {
 const bookDetailsByIsbnNo = (isbnNo) => {
     return db.Books.findOne({ isbnNo: {$regex: new RegExp('^' + isbnNo, 'i')} })
         .then(book => {
-            console.log("isbncalled");
+            console.log("isbncalled"+isbnNo);
             console.log(book);
             if (!book) {
                 return {
@@ -35,6 +36,7 @@ const bookDetailsByIsbnNo = (isbnNo) => {
             }
             else {
                 return {
+                    bookDetails:book,
                     status: true,
                     statusCode: 200,
                     message: "Book details found."
@@ -50,9 +52,10 @@ return db.Books.find().sort({price:1})
     console.log(data);
     if(data){
         return {
+            book:data,
             status: true,
             statusCode: 200,
-            message: "Listing low to high"
+            message: "Listing price low to high"
         }
     }
     else{
@@ -71,6 +74,7 @@ const bookListHighToLow=()=>{
         console.log(data);
         if(data){
             return {
+                book:data,
                 status: true,
                 statusCode: 200,
                 message: "Listing high to low"
@@ -134,7 +138,7 @@ const bookListByName = (bookName) => {
         })
 }
 
-const bookRegister = (isbnNo, bookName, category, dop, bookImage, description, author, price) => {
+const bookRegister = (isbnNo, bookName, category, dop, bookImage, description, author,inStock, price) => {
     return db.Books.findOne({ isbnNo })
         .then(data => {
             if (data) {
@@ -153,6 +157,7 @@ const bookRegister = (isbnNo, bookName, category, dop, bookImage, description, a
                     bookImage,
                     description,
                     author,
+                    inStock,
                     price
                 });
                 newBook.save();
@@ -198,6 +203,7 @@ const bookUpdate=(req,isbnNo)=>{
         bookImage: req.body.bookImage,
         description: req.body.description,
         author: req.body.author,
+        inStock:req.body.inStock,
         price:req.body.price
     });
     return db.Books.updateOne({isbnNo: {$regex: new RegExp('^' + isbnNo, 'i')}},updateBook)

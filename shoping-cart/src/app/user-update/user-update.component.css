@@ -1,0 +1,85 @@
+body {
+	margin: 0;
+	padding: 0;
+	font-family: 'Poppins', sans-serif;
+	background-color: rgb(255, 255, 255);
+	
+}
+
+.contact-form {
+	justify-content: center;
+	position:absolute;
+	/* margin-top: 50px; */
+	top:35%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 500px;
+	height: 850px;
+	padding: 40px 40px;
+	background: rgba(73, 72, 72, 0.938);
+	border-radius:10% ;
+	margin-top: 130px;
+}
+
+.contact-form h2 {
+	margin: 0;
+	padding: 0 0 20px;
+	color: #fff;
+	text-align: center;
+	text-transform: uppercase;
+}
+.contact-form p {
+	margin: 0;
+	padding: 0;
+	font-weight: bold;
+	color: #fff;
+}
+.contact-form input {
+	width: 100%;
+	margin-bottom: 20px;
+}
+.contact-form input[type=text], .contact-form input[type=password],
+.contact-form input[type=email],.contact-form input[type=date],
+.contact-form select {
+	border: none;
+	border-bottom: 1px solid rgb(175, 19, 19);
+	/* background: transparent; */
+	outline: none;
+	height: 40px;
+	color: rgb(0, 0, 0);
+	font-size: 16px;
+}
+.contact-form input[type=submit] {
+	height: 30px;
+	color: #fff;
+	font-size: 15px;
+	background: red;
+	cursor: pointer;
+	border-radius: 25px;
+	border: none;
+	outline: none;
+	margin-top: ;
+}
+.contact-form a {
+	color: #fff;
+	font-size: 14px;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+.div1
+{
+    margin-left: 30px;
+    background-color: rgb(243, 235, 219);
+    height: 900px;
+    width: 100%;
+}
+.loginbtn{
+    text-align: center;
+}
+img{
+  border: 1px solid #ddd; /* Gray border */
+  border-radius: 4px;  /* Rounded border */
+  padding: 5px; /* Some padding */
+  width: 250px; /* Set a small width */
+}

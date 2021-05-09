@@ -1,0 +1,122 @@
+<div class="containers">
+    <div class="row">
+        <div class="div1 col-lg-2 col-sm-6">
+
+            <div class="text-center">
+                <img src="\assets\images\1.jpg" class="img-thumbnail" alt="book Terre" width="304" height="236">
+                <!-- <img src="../2.jpg" alt=""><br><br><br> -->
+                <br><br>
+
+                <h4>Welcom {{customername}}</h4>
+                <h6>Explore the world of knowledge. Login to find more...</h6>
+
+
+                <a routerLink="login"><button type="submit" class="btn btn-primary loginbtn ">Logout</button></a>
+                <br><br>
+                <a routerLink="userView"><button type="submit" class="btn btn-link loginbtn "> View account</button></a><br>
+                <a routerLink="userUpdate"><button type="submit" class="btn btn-link loginbtn "> Update account</button></a>
+            </div>
+
+        </div>
+        <div class="col-lg-6 col-sm-6 ">
+            <form>
+                <nav class="navbar navbar-expand-sm navbar-dark bg-light ">
+                    <div class="container-fluid">
+                        <!-- <button type="submit" (click)="listByLowtoHigh()">Low to high</button> -->
+                        <div class="btn-group dropright">
+
+                            <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                List by
+                            </button>
+                            <div class="dropdown-menu">
+
+                                <button type="submit" class="dropdown-item btn btn-light" href="#"
+                                    (click)="listByLowtoHigh()">Low to
+                                    high</button>
+
+                                <button type="submit" class="dropdown-item btn btn-light" href="#"
+                                    (click)="listByHightoLow()">High to
+                                    Low</button>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+                <div *ngIf="showdefault" style="margin-top: 30px;">
+                    <table style="width:100%;border: 2px solid silver;">
+
+                        <tr *ngFor="let item of products" style="border: 2px solid silver;width:100%">
+                            <td style="border: 2px solid silver;width:50%;padding-left: 100px;">
+                                <a (click)="gotoBookDetails(item.isbnNo)"><img src="\assets\images\{{item.bookImage}}"></a>
+                                    <br>{{item.bookName}}<br>
+                                 </td>
+                            <td style="border: 2px solid silver;width:100%">
+                                <h5>{{item.bookName}}</h5><br>
+                                <h5>{{item.price | currency:'INR'}}</h5>
+                                <h6>{{item.author}}</h6><small style="color: green; font-size:medium ;">In
+                                    stock:{{item.inStock}}</small>
+                            </td>
+                        </tr>
+
+                    </table>
+                </div>
+                <div>
+
+                    <table style="width:100%;border: 2px solid silver;" *ngIf="pricelistinglth">
+
+                        <tr *ngFor="let item of productslth" style="border: 2px solid silver;width:100%">
+                            <td style="border: 2px solid silver;width:50%;padding-left: 100px;">
+                                  <a (click)="gotoBookDetails()"><img src="\assets\images\{{item.bookImage}}"></a>
+                                   
+                                </td>
+                            <td style="border: 2px solid silver;width:100%">
+                                <h5>{{item.bookName}}</h5><br>
+                                <h5>{{item.price | currency:'INR'}}</h5>
+                                <h6>{{item.author}}</h6><small style="color: green; font-size:medium ;">In
+                                    stock:{{item.inStock}}</small>
+                            </td>
+
+                        </tr>
+
+                    </table>
+
+
+                    <table style="width:100%;border: 2px solid silver;" *ngIf="pricelistinghtl">
+
+                        <tr *ngFor="let item of productshtl" style="border: 2px solid silver;width:100%">
+                            <td style="border: 2px solid silver;width:50%;padding-left: 100px;">
+                                <a (click)="gotoBookDetails()"><img src="\assets\images\{{item.bookImage}}"></a>
+                                   
+                                </td>
+                            <td style="border: 2px solid silver;width:100%">
+                                <h5>{{item.bookName}}</h5><br>
+                                <h5>{{item.price | currency:'INR'}}</h5>
+                                <h6>{{item.author}}</h6><small style="color: green; font-size:medium ;">In
+                                    stock:{{item.inStock}}</small>
+                            </td>
+
+                        </tr>
+
+                    </table>
+                </div>
+
+                <div id="list"></div>
+            </form>
+        </div>
+    </div>
+
+</div>
+<!-- <script>
+    function listByLowtoHigh(){
+        $.ajax({
+            url:"http://localhost:3000/books/listByPrice/lowToHigh",
+            type:"GET",
+            dataType:"JSON",
+            data:JSON.stringify({ }),
+            success:function(data){
+                $('.product').append("<td>"+JSON.stringify(data)+"</td>")
+            }
+            
+        });
+    }
+</script> -->

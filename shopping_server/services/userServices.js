@@ -1,6 +1,9 @@
 const { json } = require('express');
 const express = require('express');
 var db = require('../Models/users');
+var cartdb = require('../Models/carts');
+var bookdb = require('../Models/books');
+//var user=require('../Models/users');
 
 let currentUser;
 
@@ -47,6 +50,137 @@ const userRegister = (custName, userName, password, gender, dob, address, phoneN
         })
 }
 
+const addToCart = (userName, isbnNo, noOfCopies) => {
+    console.log(Date());
+
+    // var userCart = new cartdb.Carts({
+    //     userName,
+    //     isbnNo,
+    //     noOfCopies,
+    //     amount:
+    //     date: Date()
+    // });
+    // userCart.save();
+    // bookdb.Books.updateOne(
+    //     {
+    //         isbnNo: isbnNo,
+    //         inStock: { $gt: 0 }
+    //     }, {
+    //     $inc: {
+    //         inStock: -1
+    //     }
+    // }
+
+    // );
+
+
+    return bookdb.Books.find({ isbnNo: isbnNo }, { price: 1, inStock: 1, _id: 0 })
+
+        .then(data => {
+            if (data) {
+                console.log(data);
+                // var decstock=(data[0].inStock)-1;
+                // console.log(decstock);
+                // data[0].inStock=decstock;
+                // console.log(data);
+                // bookdb.Books.updateOne(
+                //         {
+                //             isbnNo: isbnNo,
+                //             inStock: "$decStock"
+                //         });
+                var totPrice = (noOfCopies * data[0].price);
+                console.log(totPrice);
+                var userCart = new cartdb.Carts({
+                    userName,
+                    isbnNo,
+                    noOfCopies: noOfCopies,
+                    amount: totPrice,
+                    date: Date()
+                });
+
+                userCart.save();
+                return {
+                    status: true,
+                    statusCode: 200,
+                    message: "Item added to your cart",
+                    amount: totPrice
+                }
+
+            }
+            else {
+                return {
+                    status: false,
+                    statusCode: 422,
+                    message: "Book not found"
+                }
+            }
+        })
+}
+
+const getTotalAmount = (userName) => {
+    return cartdb.Carts.aggregate([        //aggregate function to sum amounts from carts table
+        { $match: { userName: userName } },
+        {
+            $group: {
+                _id: userName,
+                total: {
+                    $sum: "$amount"
+                }
+            }
+        }
+
+    ])
+        .then(data => {
+            if (data) {
+                // console.log(data[0].total);
+               var tot=data[0].total;
+                return {
+                    sum: tot,
+                    status: true,
+                    statusCode: 200,
+                    message: "Amount found",
+                }
+            }
+            else{
+                return {
+                    status: false,
+                    statusCode: 422,
+                    message: "Cart is empty"
+                }
+            }
+
+        })
+
+}
+
+const viewCartItems = (userName) => {
+
+    return cartdb.Carts.find({ userName })
+        .then(data => {
+            if (data) {
+                console.log(data.isbnNo);
+                return {
+
+                    items: data,
+                    status: true,
+                    statusCode: 200,
+                    message: "Items found",
+                }
+            }
+            else {
+                return {
+                    status: false,
+                    statusCode: 422,
+                    message: "Cart is empty"
+                }
+            }
+        })
+}
+
+////////
+
+
+//////////
 // const useremail = (email) => {
 //     return db.User.findOne({ email })
 //         .then(em => {
@@ -85,6 +219,7 @@ const userList = () => {
             if (user) {
                 var records = db.User.count();
                 return {
+                    userlist: user,
                     status: true,
                     statusCode: 200,
                     message: `Total ${records} records found.`
@@ -101,25 +236,31 @@ const userList = () => {
         })
 }
 
-const userDetails = (userName) => {
-    return db.User.findOne({ userName })
+const userDetailsView = (userName) => {
+    // console.log(userName);
+    return db.User.find({ userName })
         .then(user => {
-            if (!user) {
+            if (user) {
+                console.log(user[0]);
+                return {
+                    usdata: user[0],
+                    status: true,
+                    statusCode: 200,
+                    message: "Success"
+                }
+
+            }
+            else {
                 return {
                     status: false,
                     statusCode: 422,
                     message: "Error in retrieving Users' details."
                 }
             }
-            else {
-                console.log(user);
-                return {
-                    status: true,
-                    statusCode: 200
-                }
-            }
         })
 }
+
+
 
 const userLogin = (req, userName, password) => {
     return db.User.findOne({ userName, password })
@@ -165,6 +306,7 @@ const userDelete = (userName) => {
 }
 
 const userUpdate = (req, userName) => {
+    console.log(userName);
     var updateUser = ({
         custName: req.body.custName,
         userName: req.body.userName,
@@ -197,9 +339,12 @@ const userUpdate = (req, userName) => {
 module.exports = {
     userRegister,
     userDelete,
-    userDetails,
+    userDetailsView,
     userLogin,
     userUpdate,
-    userList
+    userList,
+    addToCart,
+    viewCartItems,
+    getTotalAmount
 
 }

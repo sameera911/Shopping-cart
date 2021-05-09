@@ -1,0 +1,92 @@
+<div class="containers">
+    <div class="row">
+        <div class="div1 col-lg-2 col-sm-6">
+
+            <div class="text-center">
+                <img src="\assets\images\1.jpg" class="img-thumbnail" alt="book Terre" width="304" height="236">
+                <!-- <img src="../2.jpg" alt=""><br><br><br> -->
+                <br><br>
+
+                <h4>Welcom {{name}}</h4>
+                <h6>Explore the world of knowledge. Login to find more...</h6>
+
+
+                <a routerLink="login"><button type="submit" class="btn btn-primary loginbtn ">Logout</button></a>
+                <br><br>
+                <a><button type="submit" class="btn btn-link loginbtn " > View
+                        account</button></a><br>
+                <a ><button type="submit" class="btn btn-link loginbtn " (click)="gotoUpdate()"> Update
+                        account</button></a>
+            </div>
+
+        </div>
+        <div class="col-lg-6 col-sm-6 ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3"></div>
+                    <div class="col-lg-6">
+
+                        <div class="contact-form" *ngIf="currentUser">
+                            
+                            <table class="tablestyle">
+
+                                <tr>
+                                    <td>
+                                        <p>Name:</p>
+                                    </td>
+                                    <td><p>{{customername}}</p></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p>User Name:</p>
+                                    </td>
+                                    <td><p>{{username}}</p></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p>Password:</p>
+                                    </td>
+                                    <td><p>{{password}}</p></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p>gender:</p>
+                                    </td>
+                                    <td><p>{{gender}}</p></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p>dob:</p>
+                                    </td>
+                                    <td><p>{{dob | date:'shortDate'}}</p></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p>address:</p>
+                                    </td>
+                                    <td><p>{{address}}</p></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p>Phone no:</p>
+                                    </td>
+                                    <td><p>{{phoneno}}</p></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p>Email:</p>
+                                    </td>
+                                    <td><p>{{email}}</p></td>
+                                </tr>
+
+                            </table>
+                            <button class="btn btn-success" style="margin-left: 150px; text-align: center;"
+                                (click)="gotoUpdate()"> Update</button>
+                        </div>
+                    </div>
+                    <div class="col-lg-3"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

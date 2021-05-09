@@ -1,0 +1,53 @@
+<div class="container-fluid">
+    <div class="row headingdiv">
+        <div class="col-lg-4 col-sm-2"></div>
+        <div class="col-lg-8 col-sm-10"><br>
+            <h2>Welcome to the world of books.</h2>
+        </div>
+    </div>
+    <div class="">
+        <nav class="sticky-top navbar navbar-expand-sm navbar-dark bg-primary ">
+            <div class="container-fluid"> <img src="" alt="bookland logo">
+                <a class="navbar-brand" href="#">BookLand</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#" routerLink="">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#" routerLink="userRegister">Register</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdownMenuLink"
+                                role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Books
+                            </a>
+
+                            <ul class="dropdown-menu active" aria-labelledby="navbarDropdownMenuLink">
+                                <li><a class="dropdown-item" href="#">Computer Science books</a></li>
+                                <li><a class="dropdown-item" href="#">GK books</a></li>
+                                <li><a class="dropdown-item" href="#">Science books</a></li>
+                                <li><a class="dropdown-item" href="#">Mathematics books</a></li>
+                                <li><a class="dropdown-item" href="#">Kids books</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#" tabindex="-1" aria-disabled="true" (click)=cartClick()> <i
+                                    class="fa fa-shopping-cart" ></i>Cart</a>
+                        </li>
+                    </ul>
+                    <form class="d-flex">
+                        <input class="form-control me-2" name="search" type="search" placeholder="Search"
+                            aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>

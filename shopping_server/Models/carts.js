@@ -1,12 +1,9 @@
 const mongoose=require('../db')
-var Cart=mongoose.model('Cart',{
+var Carts=mongoose.model('Carts',{
     userName:{type:String},
-    password:{type:String},
-    phoneNo:{type:Number},
-    isbnNo:{type:Number},
-    bookName:{type:String},
-    price:{type:Number},
-    numberofBooks:{type:Number},
+    isbnNo:{type:String},
+    noOfCopies:{type:Number},
+    amount:{type:Number},
     date:{type:Date}
 });
-module.exports={Cart};
+module.exports={Carts};

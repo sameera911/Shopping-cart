@@ -7,6 +7,7 @@ var Books=mongoose.model('Books',{
     bookImage:{type:String},
     description:{type:String},
     author:{type:String},
+    inStock:{type:Number},
     price:{type:Number},
     });
 module.exports={Books};
